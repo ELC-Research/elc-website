@@ -1,2 +1,2 @@
 # elc-website
-Landing page for the Ecological Languaging Competencies Research Hub
+Landing page for the Ecological Languaging Competencies (ELC) Research Hub
