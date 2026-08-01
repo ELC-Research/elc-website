@@ -3,295 +3,1184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ELC Research | Ecological Languaging Competencies</title>
+    <title>ELC Nexus — Ecological Languaging Competencies Research Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --color-bg: #fafaf8;
+            --color-bg-elevated: #ffffff;
+            --color-text-primary: #1a1a1a;
+            --color-text-secondary: #4a4a48;
+            --color-text-tertiary: #7a7a78;
+            --color-border: #e5e5e0;
+            --color-border-light: #f0f0ec;
+            --color-accent: #2d5a4a;
+            --color-accent-light: #e8f0ec;
+            --color-accent-hover: #1e3d31;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'Crimson Pro', Georgia, serif;
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.08);
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.7;
-            color: #333;
-            background-color: #fafafa;
+            font-family: var(--font-sans);
+            background: var(--color-bg);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: rgba(250, 250, 248, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border-light);
+            z-index: 1000;
             padding: 0 24px;
         }
 
-        header {
-            background-color: #fff;
-            border-bottom: 1px solid #e5e5e5;
-            padding: 48px 0 32px;
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
         }
 
         .logo {
-            font-size: 1.1rem;
+            font-family: var(--font-serif);
+            font-size: 20px;
             font-weight: 600;
-            letter-spacing: 0.05em;
-            color: #2c5282;
-            text-transform: uppercase;
+            color: var(--color-text-primary);
+            text-decoration: none;
+            letter-spacing: -0.01em;
         }
 
-        h1 {
-            font-size: 2.2rem;
+        .logo span {
+            font-family: var(--font-sans);
+            font-size: 11px;
             font-weight: 400;
-            margin-top: 16px;
-            line-height: 1.3;
-            color: #1a202c;
+            color: var(--color-text-tertiary);
+            display: block;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-top: -2px;
         }
 
-        .tagline {
-            font-size: 1.15rem;
-            color: #4a5568;
-            margin-top: 12px;
-            font-weight: 300;
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
         }
 
-        main {
-            background-color: #fff;
-            padding: 48px 0;
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+            position: relative;
         }
 
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--color-text-primary);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0; right: 0;
+            height: 2px;
+            background: var(--color-accent);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        /* Sections */
         section {
+            padding: 80px 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
             margin-bottom: 48px;
         }
 
-        h2 {
-            font-size: 1.4rem;
+        .section-label {
+            font-size: 11px;
             font-weight: 600;
-            color: #2d3748;
-            margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #e2e8f0;
-            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--color-accent);
+            margin-bottom: 12px;
         }
 
-        p {
-            margin-bottom: 16px;
-            color: #4a5568;
-        }
-
-        .highlight-box {
-            background-color: #f7fafc;
-            border-left: 4px solid #2c5282;
-            padding: 20px 24px;
-            margin: 24px 0;
-            border-radius: 0 4px 4px 0;
-        }
-
-        .highlight-box p {
-            margin: 0;
-            color: #2d3748;
-        }
-
-        .framework-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin-top: 24px;
-        }
-
-        .framework-card {
-            background-color: #f7fafc;
-            padding: 20px;
-            border-radius: 6px;
-            border: 1px solid #e2e8f0;
-        }
-
-        .framework-card h3 {
-            font-size: 1rem;
-            color: #2c5282;
-            margin-bottom: 8px;
-        }
-
-        .framework-card p {
-            font-size: 0.95rem;
-            margin: 0;
-        }
-
-        .resource-list {
-            list-style: none;
-            margin-top: 16px;
-        }
-
-        .resource-list li {
-            padding: 12px 0;
-            border-bottom: 1px solid #edf2f7;
-        }
-
-        .resource-list li:last-child {
-            border-bottom: none;
-        }
-
-        .resource-list a {
-            color: #2c5282;
-            text-decoration: none;
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 36px;
             font-weight: 500;
+            line-height: 1.2;
+            color: var(--color-text-primary);
+            margin-bottom: 16px;
         }
 
-        .resource-list a:hover {
-            text-decoration: underline;
+        .section-desc {
+            font-size: 17px;
+            color: var(--color-text-secondary);
+            max-width: 720px;
+            line-height: 1.6;
         }
 
-        .resource-list .desc {
-            display: block;
-            font-size: 0.9rem;
-            color: #718096;
-            margin-top: 4px;
+        /* Hero */
+        .hero {
+            padding-top: 140px;
+            padding-bottom: 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
         }
 
-        .contact-box {
-            background-color: #2c5282;
-            color: #fff;
-            padding: 32px 24px;
-            border-radius: 6px;
-            text-align: center;
+        .hero-content h1 {
+            font-family: var(--font-serif);
+            font-size: 44px;
+            font-weight: 500;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
         }
 
-        .contact-box h2 {
-            color: #fff;
-            border-bottom-color: rgba(255,255,255,0.3);
+        .hero-content p {
+            font-size: 17px;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
         }
 
-        .contact-box p {
-            color: #e2e8f0;
+        .hero-cta {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+            flex-wrap: wrap;
         }
 
-        .contact-box a {
-            color: #fff;
-            text-decoration: underline;
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
         }
 
-        footer {
-            background-color: #f7fafc;
-            border-top: 1px solid #e2e8f0;
-            padding: 32px 0;
-            text-align: center;
+        .btn-primary {
+            background: var(--color-accent);
+            color: white;
         }
 
-        footer p {
-            font-size: 0.85rem;
-            color: #718096;
+        .btn-primary:hover {
+            background: var(--color-accent-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-text-primary);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-bg-elevated);
+            border-color: var(--color-text-tertiary);
+        }
+
+        .book-card {
+            background: var(--color-bg-elevated);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border);
+            padding: 32px;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .book-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: var(--color-accent);
+        }
+
+        .book-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-accent);
+            background: var(--color-accent-light);
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 16px;
+        }
+
+        .book-card h3 {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            font-weight: 500;
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .book-card p {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .book-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 13px;
+            color: var(--color-text-tertiary);
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .book-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Mission */
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .mission-card {
+            background: var(--color-bg-elevated);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            transition: all 0.2s;
+        }
+
+        .mission-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .mission-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            background: var(--color-accent-light);
+            color: var(--color-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+
+        .mission-card h3 {
+            font-family: var(--font-serif);
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .mission-card p {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Team */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .team-card {
+            background: var(--color-bg-elevated);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .team-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+            border-color: var(--color-text-tertiary);
+        }
+
+        .team-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--color-accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .team-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .team-role {
+            font-size: 12px;
+            color: var(--color-accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
             margin-bottom: 8px;
         }
 
-        footer a {
-            color: #2c5282;
+        .team-institution {
+            font-size: 13px;
+            color: var(--color-text-tertiary);
+            margin-bottom: 12px;
+        }
+
+        .team-bio {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Associates */
+        .associates-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .associate-card {
+            background: var(--color-bg-elevated);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            transition: all 0.2s;
+        }
+
+        .associate-card:hover {
+            box-shadow: var(--shadow-sm);
+            border-color: var(--color-text-tertiary);
+        }
+
+        .associate-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--color-text-tertiary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .associate-card h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .associate-role {
+            font-size: 11px;
+            color: var(--color-accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 6px;
+        }
+
+        .associate-institution {
+            font-size: 12px;
+            color: var(--color-text-tertiary);
+            margin-bottom: 8px;
+        }
+
+        .associate-bio {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Projects */
+        .projects-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .project-card {
+            background: var(--color-bg-elevated);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 24px;
+            transition: all 0.2s;
+        }
+
+        .project-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .project-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            background: var(--color-accent-light);
+            color: var(--color-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .project-content h3 {
+            font-family: var(--font-serif);
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .project-pi {
+            font-size: 13px;
+            color: var(--color-text-tertiary);
+            margin-bottom: 10px;
+        }
+
+        .project-content > p {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 11px;
+            font-weight: 500;
+            padding: 4px 10px;
+            border-radius: var(--radius-sm);
+            background: var(--color-border-light);
+            color: var(--color-text-secondary);
+        }
+
+        /* Resources */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .resource-card {
+            background: var(--color-bg-elevated);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            display: flex;
+            gap: 14px;
+            transition: all 0.2s;
+            cursor: pointer;
             text-decoration: none;
+            color: inherit;
+        }
+
+        .resource-card:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--color-text-tertiary);
+        }
+
+        .resource-icon-sm {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-sm);
+            background: var(--color-accent-light);
+            color: var(--color-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .resource-info h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .resource-info p {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+
+        .resource-meta {
+            font-size: 11px;
+            color: var(--color-text-tertiary);
+            margin-top: 6px;
+        }
+
+        /* Contact */
+        .contact-section {
+            background: var(--color-bg-elevated);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border);
+            padding: 48px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-family: var(--font-serif);
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .contact-section > p {
+            font-size: 16px;
+            color: var(--color-text-secondary);
+            margin-bottom: 32px;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 640px;
+            margin: 0 auto 32px;
+        }
+
+        .contact-item {
+            padding: 20px;
+        }
+
+        .contact-item .icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .contact-item h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .contact-item p {
+            font-size: 13px;
+            color: var(--color-text-tertiary);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--color-border);
+            padding: 40px 24px;
+            text-align: center;
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .footer-inner p {
+            font-size: 13px;
+            color: var(--color-text-tertiary);
+            margin-bottom: 8px;
+        }
+
+        .footer-book-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            padding: 10px 20px;
+            background: var(--color-accent-light);
+            color: var(--color-accent);
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .footer-book-link:hover {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero { grid-template-columns: 1fr; gap: 40px; }
+            .mission-grid { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
+            .associates-grid { grid-template-columns: repeat(2, 1fr); }
+            .resources-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .project-card { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 600px) {
-            h1 {
-                font-size: 1.6rem;
-            }
-            .framework-grid {
-                grid-template-columns: 1fr;
-            }
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .hero-content h1 { font-size: 32px; }
+            .section-title { font-size: 28px; }
+            .team-grid { grid-template-columns: 1fr; }
+            .associates-grid { grid-template-columns: 1fr; }
+            section { padding: 60px 20px; }
+            .contact-section { padding: 32px 20px; }
         }
+
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 64px; left: 0; right: 0;
+            background: var(--color-bg-elevated);
+            border-bottom: 1px solid var(--color-border);
+            padding: 16px 24px;
+            z-index: 999;
+        }
+
+        .mobile-menu.active { display: block; }
+
+        .mobile-menu a {
+            display: block;
+            padding: 12px 0;
+            text-decoration: none;
+            color: var(--color-text-secondary);
+            font-size: 15px;
+            font-weight: 500;
+            border-bottom: 1px solid var(--color-border-light);
+        }
+
+        .mobile-menu a:last-child { border-bottom: none; }
     </style>
+<base target="_blank">
 </head>
 <body>
-
-    <header>
-        <div class="container">
-            <div class="logo">ELC Research</div>
-            <h1>Ecological Languaging Competencies</h1>
-            <p class="tagline">A research hub for reimagining language education through embodied, distributed, and adaptive practice.</p>
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="logo">
+                ELC Nexus
+                <span>Ecological Languaging Competencies</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#team">Research Team</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
         </div>
-    </header>
-
-    <main>
-        <div class="container">
-
-            <section id="about">
-                <h2>About</h2>
-                <p>The ELC Research Hub brings together scholars, teachers, and educators working at the intersection of applied linguistics, ecological theory, and classroom practice. We develop frameworks, tools, and resources that treat language learning as wayfinding — an embodied, multimodal journey through social and material environments.</p>
-                
-                <div class="highlight-box">
-                    <p>Our work is grounded in the conviction that language cannot be separated from the body, the social world, or the material contexts in which it unfolds. Competence is not possession; it is coordination.</p>
-                </div>
-            </section>
-
-            <section id="framework">
-                <h2>Our Framework</h2>
-                <p>The Ecological Languaging Competencies (ELC) framework draws on social theory, multimodal interaction, and dynamic systems thinking to reconceptualise what it means to know and use a language.</p>
-                
-                <div class="framework-grid">
-                    <div class="framework-card">
-                        <h3>MEC</h3>
-                        <p>Multimodal Embodied Competence — languaging as situated action involving bodily, spatial, and digital resources.</p>
-                    </div>
-                    <div class="framework-card">
-                        <h3>4T Lenses</h3>
-                        <p>Text, Task, Topic, and Trajectory — a heuristic for designing and evaluating language learning experiences.</p>
-                    </div>
-                    <div class="framework-card">
-                        <h3>Wayfinding</h3>
-                        <p>Education as navigation through complex semiotic landscapes, rather than linear progression toward fixed targets.</p>
-                    </div>
-                    <div class="framework-card">
-                        <h3>Assessment</h3>
-                        <p>Rubric design and feedback systems that capture growth in coordination, not merely correctness.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="resources">
-                <h2>Resources</h2>
-                <p>We share open tools and publications for researchers and practitioners. All materials are licensed under CC BY-NC 4.0 unless otherwise noted.</p>
-                
-                <ul class="resource-list">
-                    <li>
-                        <a href="#">ELC Assessment Rubrics</a>
-                        <span class="desc">Genre-based and multimodal rubrics for classroom and research use.</span>
-                    </li>
-                    <li>
-                        <a href="#">MEC Diagram &amp; Explanatory Notes</a>
-                        <span class="desc">A visual framework for analysing embodied languaging in interaction.</span>
-                    </li>
-                    <li>
-                        <a href="#">4T Lenses Course Design Guide</a>
-                        <span class="desc">A practical heuristic for curriculum and task design.</span>
-                    </li>
-                    <li>
-                        <a href="#">Publications</a>
-                        <span class="desc">Selected articles, book chapters, and conference presentations.</span>
-                    </li>
-                </ul>
-            </section>
-
-            <section id="collaborators">
-                <h2>Collaborators</h2>
-                <p>ELC Research is a collaborative network spanning Hong Kong, Alberta, Sydney, and beyond. We work with teachers, doctoral researchers, and institutional partners who share a commitment to ecological approaches in language education.</p>
-                <p>Current projects include AI-enabled learning design, translanguaging pedagogies, and genre-based assessment innovation.</p>
-            </section>
-
-            <section id="contact">
-                <div class="contact-box">
-                    <h2>Get in Touch</h2>
-                    <p>Whether you are a teacher seeking resources, a researcher interested in collaboration, or a student exploring ecological frameworks, we would love to hear from you.</p>
-                    <p style="margin-top: 16px; font-size: 1.1rem;">
-                        <a href="mailto:elc.research@proton.me">elc.research@proton.me</a>
-                    </p>
-                </div>
-            </section>
-
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#home" onclick="toggleMenu()">Home</a>
+            <a href="#team" onclick="toggleMenu()">Research Team</a>
+            <a href="#projects" onclick="toggleMenu()">Projects</a>
+            <a href="#resources" onclick="toggleMenu()">Resources</a>
+            <a href="#contact" onclick="toggleMenu()">Contact</a>
         </div>
-    </main>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Reimagining language competence as ecological, embodied action</h1>
+            <p>The ELC Assessment Research Team brings together distinguished scholars from across the globe to advance ecological approaches to language teaching, learning, and assessment.</p>
+            <p>We bridge traditional assessment frameworks with real-world scenarios, developing innovative tools and theories that recognise languaging as embodied, distributed, and adaptive coordination with people, artefacts, and environments.</p>
+            <div class="hero-cta">
+                <a href="https://www.cambridge.org/core/elements/ecological-languaging-competencies/32A10089686A000AC34012AE10F7A74C" class="btn btn-primary" target="_blank">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    Access the Open Access Book
+                </a>
+                <a href="#team" class="btn btn-secondary">Meet the team</a>
+            </div>
+        </div>
+        <div class="book-card">
+            <div class="book-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                Open Access — Cambridge Core
+            </div>
+            <h3>Ecological Languaging Competencies: Teaching, Learning and Assessment</h3>
+            <p>This Cambridge Element offers a fundamental re-orientation of communicative competence, examining conceptual reframing, Bayesian assessment approaches, and professional development for ecological languaging.</p>
+            <div class="book-meta">
+                <span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    Sept 10, 2026
+                </span>
+                <span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                    Cambridge University Press
+                </span>
+                <span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    10 co-authors
+                </span>
+            </div>
+            <a href="https://www.cambridge.org/core/elements/ecological-languaging-competencies/32A10089686A000AC34012AE10F7A74C" class="btn btn-primary" style="width:100%;justify-content:center;" target="_blank">
+                Download on Cambridge Core
+            </a>
+        </div>
+    </section>
+
+    <section id="mission">
+        <div class="section-header">
+            <div class="section-label">Our mission</div>
+            <h2 class="section-title">Three pillars of our work</h2>
+            <p class="section-desc">Our research is grounded in ecological theory, methodological innovation, and a commitment to educational impact across diverse contexts.</p>
+        </div>
+        <div class="mission-grid">
+            <div class="mission-card">
+                <div class="mission-icon">🌿</div>
+                <h3>Theoretical re-framing</h3>
+                <p>Moving beyond context-abstracted, code-bound notions of competence toward an ecological understanding of languaging as embodied, situation-sensitive action coordinated with others, artefacts, and environments.</p>
+            </div>
+            <div class="mission-card">
+                <div class="mission-icon">🔧</div>
+                <h3>Assessment innovation</h3>
+                <p>Developing Bayesian-informed approaches that track learner development by integrating prior accomplishment, expert judgement, and emerging performance into probabilistic trajectories of growth.</p>
+            </div>
+            <div class="mission-card">
+                <div class="mission-icon">🌍</div>
+                <h3>Global collaboration</h3>
+                <p>Building sustainable partnerships across institutions and continents to translate ecological languaging research into classroom practice, teacher education, and assessment policy.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="team">
+        <div class="section-header">
+            <div class="section-label">Research team</div>
+            <h2 class="section-title">The New Territories Group</h2>
+            <p class="section-desc">Ten core scholars spanning Hong Kong, London, Toronto, Sydney, and Shanghai, united by a shared commitment to ecological languaging approaches to teaching, learning and assessment.</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-avatar">CL</div>
+                <h4>Constant Leung</h4>
+                <div class="team-role">Group Leader · Professor</div>
+                <div class="team-institution">King's College London</div>
+                <p class="team-bio">World-leading expert in language education, assessment and curriculum studies. His work on teacher assessment literacy and classroom-based assessment is pivotal in the development of ELC theory and practice. Fellow of the Academy of Social Sciences in the UK.</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">AL</div>
+                <h4>Angel M. Y. Lin</h4>
+                <div class="team-role">Group Co-ordinator · Chair Professor</div>
+                <div class="team-institution">The Education University of Hong Kong</div>
+                <p class="team-bio">Pioneering figure in plurilingual education and critical literacies. Former Tier 1 Canada Research Chair in Plurilingual and Intercultural Education at Simon Fraser University. Leads research on ecological languaging, translanguaging, and AI-enhanced learning design.</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">PT</div>
+                <h4>Paul J. Thibault</h4>
+                <div class="team-role">Adjunct Professor</div>
+                <div class="team-institution">The Education University of Hong Kong</div>
+                <p class="team-bio">Leading scholar in ecological semiotics and distributed language view (DLV). His work on languaging as embodied, distributed action provides the theoretical foundation for the ELC framework.</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">MC</div>
+                <h4>Ming Ming Chiu</h4>
+                <div class="team-role">Chair Professor</div>
+                <div class="team-institution">The Education University of Hong Kong</div>
+                <p class="team-bio">Inventor of statistical discourse analysis and multilevel diffusion analysis. Applies advanced statistical and AI methods to educational research, inequalities, and learning analytics. Director of Assessment Research Centre at EdUHK.</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">MG</div>
+                <h4>Michelle Mingyue Gu</h4>
+                <div class="team-role">Professor</div>
+                <div class="team-institution">The Education University of Hong Kong</div>
+                <p class="team-bio">Professor of Sociolinguistics researching language and identity, multilingualism and mobility, and digital trans-literacies. Her impactful work illuminates youth online identity and self-concept.</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">EJ</div>
+                <h4>Eunice Eunhee Jang</h4>
+                <div class="team-role">Professor</div>
+                <div class="team-institution">University of Toronto</div>
+                <p class="team-bio">Expert in language assessment and educational measurement. Her research on Bayesian assessment approaches and developmental trajectories informs the ELC assessment framework.</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">LW</div>
+                <h4>Li Wei</h4>
+                <div class="team-role">Professor</div>
+                <div class="team-institution">University College London</div>
+                <p class="team-bio">Distinguished scholar and world-leading researcher in applied linguistics and plurilingualism. Executive Dean of the UCL Institute of Education. Elected Fellow of the British Academy, Academia Europaea, and Academy of Social Sciences, UK.</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">AG</div>
+                <h4>Xuesong (Andy) Gao</h4>
+                <div class="team-role">Professor</div>
+                <div class="team-institution">University of New South Wales</div>
+                <p class="team-bio">Top researcher in language teacher education and learner agency and identity. His work examines how teachers and learners navigate complex multilingual ecologies in classroom contexts.</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">YZ</div>
+                <h4>Yongyan Zheng</h4>
+                <div class="team-role">Professor</div>
+                <div class="team-institution">Fudan University, China</div>
+                <p class="team-bio">World-leading scholar in language education and teacher education. His research bridges classroom realities with ecological languaging approaches to assessment.</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">YL</div>
+                <h4>Yiqi Liu</h4>
+                <div class="team-role">Associate Professor</div>
+                <div class="team-institution">The Education University of Hong Kong</div>
+                <p class="team-bio">Specialises in sociolinguistics, discourse analysis, bilingual education, CLIL and EMI. Her interdisciplinary research advances innovative pedagogy and assessment. She also pioneers the development of AI-ADS in health care professional intercultural communication training.</p>
+            </div>
+        </div>
+
+        <div class="section-header" style="margin-top:64px;">
+            <div class="section-label">Research associates</div>
+            <h2 class="section-title" style="font-size:28px;">Collaborating researchers</h2>
+            <p class="section-desc">Emerging scholars and postdoctoral researchers contributing to the ELC research programme across institutions and career stages.</p>
+        </div>
+        <div class="associates-grid">
+            <div class="associate-card">
+                <div class="associate-avatar">QC</div>
+                <h4>Qinghua Chen</h4>
+                <div class="associate-role">Assistant Professor</div>
+                <div class="associate-institution">National Institute of Education, Nanyang Technological University, Singapore</div>
+                <p class="associate-bio">Integrates Foucauldian frameworks with critical perspectives on language teaching. Examines generative AI's impact on education and teacher agency across Asia-Pacific contexts.</p>
+            </div>
+            <div class="associate-card">
+                <div class="associate-avatar">MJ</div>
+                <h4>Mahtab Janfada</h4>
+                <div class="associate-role">Senior Lecturer</div>
+                <div class="associate-institution">The University of Melbourne</div>
+                <p class="associate-bio">Advancing pluriliteracies in language and literacy education through sociocultural and critical paradigms. Expert in Bakhtinian dialogicality theory; pioneers translating the PAA Model and 4T Lenses into classroom practice.</p>
+            </div>
+            <div class="associate-card">
+                <div class="associate-avatar">TX</div>
+                <h4>Lu Tracy Xi</h4>
+                <div class="associate-role">PhD Candidate</div>
+                <div class="associate-institution">University of Georgia</div>
+                <p class="associate-bio">Multilingual speaker of Mandarin, Cantonese, English, Japanese, and Portuguese. Her transnational identity informs interdisciplinary research in second language learning, AI-human relationality and sociolinguistics.</p>
+            </div>
+            <div class="associate-card">
+                <div class="associate-avatar">MZ</div>
+                <h4>Minnie Man Zhu</h4>
+                <div class="associate-role">EDD Candidate</div>
+                <div class="associate-institution">The Education University of Hong Kong</div>
+                <p class="associate-bio">Experienced Primary School Teacher and Teacher-Researcher. Pioneering the Bayesian approach to dynamic classroom assessment, conducting an auto-ethnography on Teacher Assessment Literacy Development.</p>
+            </div>
+            <div class="associate-card">
+                <div class="associate-avatar">EH</div>
+                <h4>Peichang (Emily) He</h4>
+                <div class="associate-role">Postdoctoral Research Fellow</div>
+                <div class="associate-institution">The Education University of Hong Kong</div>
+                <p class="associate-bio">Excels in translating LAC and CLIL theories into teacher-actionable classroom approaches. Pioneered the Concept and Language Mapping Approach (CLM) in CLIL and is a pivotal researcher in the ELC team.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="section-header">
+            <div class="section-label">Research projects</div>
+            <h2 class="section-title">Current investigations</h2>
+            <p class="section-desc">Our collaborative projects span theoretical development, assessment design, classroom implementation, AI-for-Education, and teacher professional learning across diverse educational contexts.</p>
+        </div>
+        <div class="projects-list">
+            <div class="project-card">
+                <div class="project-icon">🌿</div>
+                <div class="project-content">
+                    <h3>ELC Theoretical Framework Development</h3>
+                    <div class="project-pi">Principal Investigators: Paul J. Thibault, Constant Leung & Angel M. Y. Lin</div>
+                    <p>Refining the conceptual architecture of ecological languaging competencies, articulating the relationships between embodied action, distributed cognition, and situational coordination in communicative practice.</p>
+                    <div class="project-tags">
+                        <span class="tag">Theoretical</span>
+                        <span class="tag">Conceptual framing</span>
+                        <span class="tag">Distributed language</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">📊</div>
+                <div class="project-content">
+                    <h3>Bayesian Trajectory Assessment System</h3>
+                    <div class="project-pi">Principal Investigators: Constant Leung, Paul J. Thibault, Eunice Jang, Minnie Man Zhu, Angel M. Y. Lin & Ming Ming Chiu</div>
+                    <p>Designing and validating assessment instruments that use Bayesian principles to track learner development, integrating prior accomplishment, expert judgement, and emerging performance data.</p>
+                    <div class="project-tags">
+                        <span class="tag">Assessment</span>
+                        <span class="tag">Bayesian methods</span>
+                        <span class="tag">Learning analytics</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">🎓</div>
+                <div class="project-content">
+                    <h3>Teacher Professional Development for ELC</h3>
+                    <div class="project-pi">Principal Investigators: Constant Leung & Yiqi Liu</div>
+                    <p>Developing professional learning programmes that support teachers in reconceptualising communicative competence and implementing ecological languaging principles in curriculum and materials design.</p>
+                    <div class="project-tags">
+                        <span class="tag">Teacher education</span>
+                        <span class="tag">Curriculum design</span>
+                        <span class="tag">Professional learning</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">🤖</div>
+                <div class="project-content">
+                    <h3>AI-Mediated Feedback and Languaging</h3>
+                    <div class="project-pi">Principal Investigators: Qinghua Chen & Tracy Lu Xi</div>
+                    <p>Investigating how generative AI can be harnessed to provide ecological, formative feedback on student languaging performances while preserving the embodied and distributed nature of communication.</p>
+                    <div class="project-tags">
+                        <span class="tag">Artificial intelligence</span>
+                        <span class="tag">Formative assessment</span>
+                        <span class="tag">Feedback design</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">🌍</div>
+                <div class="project-content">
+                    <h3>Ecological Languaging and Learning as Wayfinding</h3>
+                    <div class="project-pi">Principal Investigators: Paul J. Thibault, Li Wei & Michelle Mingyue Gu</div>
+                    <p>Examining how multilingual learners navigate complex communicative ecologies, drawing on translanguaging practices and digital trans-literacies to make meaning across boundaries.</p>
+                    <div class="project-tags">
+                        <span class="tag">Multilingualism</span>
+                        <span class="tag">Translanguaging</span>
+                        <span class="tag">Digital literacies</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">🔧</div>
+                <div class="project-content">
+                    <h3>4T Lenses for Educational Material Design</h3>
+                    <div class="project-pi">Principal Investigators: Mahtab Janfada & Angel M. Y. Lin</div>
+                    <p>Operationalising the temporal, translingual, transmodal, and transformative lenses for designing classroom tasks and materials that elicit and develop ecological languaging competencies.</p>
+                    <div class="project-tags">
+                        <span class="tag">Task design</span>
+                        <span class="tag">Materials development</span>
+                        <span class="tag">4T framework</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="resources">
+        <div class="section-header">
+            <div class="section-label">Resources & publications</div>
+            <h2 class="section-title">Featured open-access works</h2>
+            <p class="section-desc">Selected publications, tools, and presentations from our research programme, freely available for scholars and educators.</p>
+        </div>
+        <div class="resources-grid">
+            <a href="https://www.cambridge.org/core/elements/ecological-languaging-competencies/32A10089686A000AC34012AE10F7A74C" class="resource-card" target="_blank">
+                <div class="resource-icon-sm">B</div>
+                <div class="resource-info">
+                    <h4>Ecological Languaging Competencies: Teaching, Learning and Assessment</h4>
+                    <p>The foundational open-access book. A fundamental re-orientation of communicative competence through ecological, embodied, and distributed perspectives.</p>
+                    <div class="resource-meta">Cambridge University Press · Sept 2026 · Book</div>
+                </div>
+            </a>
+            <a href="https://cup.org/4fACq8N" class="resource-card" target="_blank">
+                <div class="resource-icon-sm">B</div>
+                <div class="resource-info">
+                    <h4>Teachers as AI Developers</h4>
+                    <p>Demonstrating how educators can become creators of pedagogically tailored AI applications. Includes case studies of an AI-assisted Dialogue System for multilingual training and assessment.</p>
+                    <div class="resource-meta">Cambridge University Press · Open Access · Book · Qinghua Chen et al.</div>
+                </div>
+            </a>
+            <a href="https://www.mdpi.com/2227-7102/16/8/1201" class="resource-card" target="_blank">
+                <div class="resource-icon-sm">A</div>
+                <div class="resource-info">
+                    <h4>Reconceptualizing the L2 Writing Process: GenAI–Human-Mediated Feedback Through ELC</h4>
+                    <p>An ethnographic study exploring GenAI–human collaborative feedback in L2 writing through three ELC-informed themes: whole-body sense-making, distributed writerly agency, and environmental affordances.</p>
+                    <div class="resource-meta">MDPI Education Sciences · 2026 · Article · Lu Xi, Qinghua Chen, Angel M. Y. Lin</div>
+                </div>
+            </a>
+            <a href="https://www.mdpi.com/2227-7102/16/1/124" class="resource-card" target="_blank">
+                <div class="resource-icon-sm">A</div>
+                <div class="resource-info">
+                    <h4>Exploring Dynamic Assessment of Writing: The Loop Pedagogy from an ELC Lens</h4>
+                    <p>A classroom ethnography examining the integration of teaching and assessment through ELC-based Loop Pedagogy. Demonstrates how writing development emerges from embodied, multimodal meaning-making.</p>
+                    <div class="resource-meta">MDPI Education Sciences · 2026 · Article · ELC Research Team</div>
+                </div>
+            </a>
+            <a href="https://share.google/bLMRaE1OwmXL0r2QR" class="resource-card" target="_blank">
+                <div class="resource-icon-sm">C</div>
+                <div class="resource-info">
+                    <h4>Integrating Languaging, Translanguaging, and Trans-semiotizing as Living Process</h4>
+                    <p>A theoretical chapter articulating how languaging, translanguaging, and trans-semiotizing operate as dynamic, living processes. Grounded in an organicist-processual philosophy.</p>
+                    <div class="resource-meta">Wiley-Blackwell · 2025 · Book Chapter · Thibault & Lin</div>
+                </div>
+            </a>
+            <div class="resource-card">
+                <div class="resource-icon-sm">R</div>
+                <div class="resource-info">
+                    <h4>ELC Assessment Rubric Toolkit</h4>
+                    <p>Downloadable rubric templates aligned with the MEC diagram and Bayesian trajectory tracking for classroom use.</p>
+                    <div class="resource-meta">Toolkit · Link forthcoming</div>
+                </div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-icon-sm">V</div>
+                <div class="resource-info">
+                    <h4>Keynote: Multilingual Wayfinding at the Crossroads</h4>
+                    <p>MAAL 2026 keynote — reimagining language education through an ecological languaging lens. Recording forthcoming.</p>
+                    <div class="resource-meta">Video · Link forthcoming</div>
+                </div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-icon-sm">S</div>
+                <div class="resource-info">
+                    <h4>Summer Intensive MA-TESOL Syllabus</h4>
+                    <p>Sample course outline using the 4T lenses and ELC principles for teacher education programmes.</p>
+                    <div class="resource-meta">Document · Link forthcoming</div>
+                </div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-icon-sm">P</div>
+                <div class="resource-info">
+                    <h4>AAAL 2027 Poster</h4>
+                    <p>AI-Enhanced Multilingual Education — integrating GenAI into Language Arts curriculum design.</p>
+                    <div class="resource-meta">Poster · Link forthcoming</div>
+                </div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-icon-sm">T</div>
+                <div class="resource-info">
+                    <h4>Teacher PD Module</h4>
+                    <p>Professional development materials on conceptual refinement, curriculum design, and ecological assessment.</p>
+                    <div class="resource-meta">Training · Link forthcoming</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-section">
+            <h2>Get in touch</h2>
+            <p>We welcome collaboration inquiries from researchers, educators, and institutions interested in ecological approaches to language education and assessment.</p>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="icon">✉️</div>
+                    <h4>Email</h4>
+                    <p>ELC.Research@proton.me</p>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">🏛️</div>
+                    <h4>Primary Institution</h4>
+                    <p>The Education University of Hong Kong</p>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">🔬</div>
+                    <h4>Research Focus</h4>
+                    <p>Ecological Languaging Competencies Assessment</p>
+                </div>
+            </div>
+            <a href="mailto:ELC.Research@proton.me" class="btn btn-primary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                Send us an email
+            </a>
+        </div>
+    </section>
 
     <footer>
-        <div class="container">
-            <p>ELC Research &copy; 2026</p>
-            <p>Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a></p>
-            <p>Hosted on <a href="https://github.com/ELC-Research/elc-website">GitHub Pages</a></p>
+        <div class="footer-inner">
+            <p><strong>ELC Nexus</strong> — Ecological Languaging Competencies Research Hub</p>
+            <p>The New Territories Group · The Education University of Hong Kong · 2026</p>
+            <a href="https://www.cambridge.org/core/elements/ecological-languaging-competencies/32A10089686A000AC34012AE10F7A74C" class="footer-book-link" target="_blank">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                Download the Open Access Book on Cambridge Core
+            </a>
         </div>
     </footer>
 
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
