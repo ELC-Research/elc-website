@@ -82,7 +82,7 @@
 
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 28px;
             list-style: none;
         }
 
@@ -353,18 +353,36 @@
             border-color: var(--color-text-tertiary);
         }
 
-        .team-avatar {
+        .team-avatar-wrapper {
             width: 56px;
             height: 56px;
             border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 16px;
+            position: relative;
             background: var(--color-accent);
-            color: white;
+            flex-shrink: 0;
+        }
+
+        .team-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .team-avatar-fallback {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: white;
             font-size: 18px;
             font-weight: 500;
-            margin-bottom: 16px;
+            z-index: 0;
         }
 
         .team-card h4 {
@@ -582,6 +600,67 @@
             margin-top: 6px;
         }
 
+        /* Media */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .media-card {
+            background: var(--color-bg-elevated);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            transition: all 0.2s;
+        }
+
+        .media-card:hover {
+            box-shadow: var(--shadow-sm);
+            border-color: var(--color-text-tertiary);
+        }
+
+        .media-card h4 {
+            font-family: var(--font-serif);
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: var(--color-text-primary);
+        }
+
+        .media-link {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            padding: 5px 0;
+            border-bottom: 1px solid var(--color-border-light);
+            transition: color 0.2s;
+        }
+
+        .media-link:hover {
+            color: var(--color-accent);
+        }
+
+        .media-link:last-child {
+            border-bottom: none;
+        }
+
+        .media-tag {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 2px 7px;
+            border-radius: 4px;
+            background: var(--color-accent-light);
+            color: var(--color-accent);
+            flex-shrink: 0;
+        }
+
         /* Contact */
         .contact-section {
             background: var(--color-bg-elevated);
@@ -680,6 +759,7 @@
             .team-grid { grid-template-columns: repeat(2, 1fr); }
             .associates-grid { grid-template-columns: repeat(2, 1fr); }
             .resources-grid { grid-template-columns: 1fr; }
+            .media-grid { grid-template-columns: 1fr; }
             .contact-grid { grid-template-columns: 1fr; }
             .project-card { grid-template-columns: 1fr; }
         }
@@ -734,6 +814,7 @@
                 <li><a href="#team">Research Team</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#resources">Resources</a></li>
+                <li><a href="#media">Media</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <button class="mobile-menu-btn" onclick="toggleMenu()">
@@ -749,6 +830,7 @@
             <a href="#team" onclick="toggleMenu()">Research Team</a>
             <a href="#projects" onclick="toggleMenu()">Projects</a>
             <a href="#resources" onclick="toggleMenu()">Resources</a>
+            <a href="#media" onclick="toggleMenu()">Media</a>
             <a href="#contact" onclick="toggleMenu()">Contact</a>
         </div>
     </nav>
@@ -826,70 +908,100 @@
         </div>
         <div class="team-grid">
             <div class="team-card">
-                <div class="team-avatar">CL</div>
+                <div class="team-avatar-wrapper">
+                    <img src="constant-leung.jpg" alt="Constant Leung" class="team-photo" onerror="this.style.display='none'">
+                    <div class="team-avatar-fallback">CL</div>
+                </div>
                 <h4>Constant Leung</h4>
                 <div class="team-role">Group Leader · Professor</div>
                 <div class="team-institution">King's College London</div>
                 <p class="team-bio">World-leading expert in language education, assessment and curriculum studies. His work on teacher assessment literacy and classroom-based assessment is pivotal in the development of ELC theory and practice. Fellow of the Academy of Social Sciences in the UK.</p>
             </div>
             <div class="team-card">
-                <div class="team-avatar">AL</div>
+                <div class="team-avatar-wrapper">
+                    <img src="angel-lin.jpg" alt="Angel M. Y. Lin" class="team-photo" onerror="this.style.display='none'">
+                    <div class="team-avatar-fallback">AL</div>
+                </div>
                 <h4>Angel M. Y. Lin</h4>
                 <div class="team-role">Group Co-ordinator · Chair Professor</div>
                 <div class="team-institution">The Education University of Hong Kong</div>
                 <p class="team-bio">Pioneering figure in plurilingual education and critical literacies. Former Tier 1 Canada Research Chair in Plurilingual and Intercultural Education at Simon Fraser University. Leads research on ecological languaging, translanguaging, and AI-enhanced learning design.</p>
             </div>
             <div class="team-card">
-                <div class="team-avatar">PT</div>
+                <div class="team-avatar-wrapper">
+                    <img src="paul-thibault.jpg" alt="Paul J. Thibault" class="team-photo" onerror="this.style.display='none'">
+                    <div class="team-avatar-fallback">PT</div>
+                </div>
                 <h4>Paul J. Thibault</h4>
                 <div class="team-role">Adjunct Professor</div>
                 <div class="team-institution">The Education University of Hong Kong</div>
                 <p class="team-bio">Leading scholar in ecological semiotics and distributed language view (DLV). His work on languaging as embodied, distributed action provides the theoretical foundation for the ELC framework.</p>
             </div>
             <div class="team-card">
-                <div class="team-avatar">MC</div>
+                <div class="team-avatar-wrapper">
+                    <img src="mingming-chiu.jpg" alt="Ming Ming Chiu" class="team-photo" onerror="this.style.display='none'">
+                    <div class="team-avatar-fallback">MC</div>
+                </div>
                 <h4>Ming Ming Chiu</h4>
                 <div class="team-role">Chair Professor</div>
                 <div class="team-institution">The Education University of Hong Kong</div>
                 <p class="team-bio">Inventor of statistical discourse analysis and multilevel diffusion analysis. Applies advanced statistical and AI methods to educational research, inequalities, and learning analytics. Director of Assessment Research Centre at EdUHK.</p>
             </div>
             <div class="team-card">
-                <div class="team-avatar">MG</div>
+                <div class="team-avatar-wrapper">
+                    <img src="michelle-gu.jpg" alt="Michelle Mingyue Gu" class="team-photo" onerror="this.style.display='none'">
+                    <div class="team-avatar-fallback">MG</div>
+                </div>
                 <h4>Michelle Mingyue Gu</h4>
                 <div class="team-role">Professor</div>
                 <div class="team-institution">The Education University of Hong Kong</div>
                 <p class="team-bio">Professor of Sociolinguistics researching language and identity, multilingualism and mobility, and digital trans-literacies. Her impactful work illuminates youth online identity and self-concept.</p>
             </div>
             <div class="team-card">
-                <div class="team-avatar">EJ</div>
+                <div class="team-avatar-wrapper">
+                    <img src="eunice-jang.jpg" alt="Eunice Eunhee Jang" class="team-photo" onerror="this.style.display='none'">
+                    <div class="team-avatar-fallback">EJ</div>
+                </div>
                 <h4>Eunice Eunhee Jang</h4>
                 <div class="team-role">Professor</div>
                 <div class="team-institution">University of Toronto</div>
                 <p class="team-bio">Expert in language assessment and educational measurement. Her research on Bayesian assessment approaches and developmental trajectories informs the ELC assessment framework.</p>
             </div>
             <div class="team-card">
-                <div class="team-avatar">LW</div>
+                <div class="team-avatar-wrapper">
+                    <img src="li-wei.jpg" alt="Li Wei" class="team-photo" onerror="this.style.display='none'">
+                    <div class="team-avatar-fallback">LW</div>
+                </div>
                 <h4>Li Wei</h4>
                 <div class="team-role">Professor</div>
                 <div class="team-institution">University College London</div>
                 <p class="team-bio">Distinguished scholar and world-leading researcher in applied linguistics and plurilingualism. Executive Dean of the UCL Institute of Education. Elected Fellow of the British Academy, Academia Europaea, and Academy of Social Sciences, UK.</p>
             </div>
             <div class="team-card">
-                <div class="team-avatar">AG</div>
+                <div class="team-avatar-wrapper">
+                    <img src="andy-gao.jpg" alt="Xuesong (Andy) Gao" class="team-photo" onerror="this.style.display='none'">
+                    <div class="team-avatar-fallback">AG</div>
+                </div>
                 <h4>Xuesong (Andy) Gao</h4>
                 <div class="team-role">Professor</div>
                 <div class="team-institution">University of New South Wales</div>
                 <p class="team-bio">Top researcher in language teacher education and learner agency and identity. His work examines how teachers and learners navigate complex multilingual ecologies in classroom contexts.</p>
             </div>
             <div class="team-card">
-                <div class="team-avatar">YZ</div>
+                <div class="team-avatar-wrapper">
+                    <img src="yongyan-zheng.jpg" alt="Yongyan Zheng" class="team-photo" onerror="this.style.display='none'">
+                    <div class="team-avatar-fallback">YZ</div>
+                </div>
                 <h4>Yongyan Zheng</h4>
                 <div class="team-role">Professor</div>
                 <div class="team-institution">Fudan University, China</div>
-                <p class="team-bio">World-leading scholar in language education and teacher education. His research bridges classroom realities with ecological languaging approaches to assessment.</p>
+                <p class="team-bio">Specialises in complex and dynamic systems theory, multilingualism, language-in-education planning. His work on the complex and distributed processes of language development and Human-AI interaction contributes to the ELC construct.</p>
             </div>
             <div class="team-card">
-                <div class="team-avatar">YL</div>
+                <div class="team-avatar-wrapper">
+                    <img src="yiqi-liu.jpg" alt="Yiqi Liu" class="team-photo" onerror="this.style.display='none'">
+                    <div class="team-avatar-fallback">YL</div>
+                </div>
                 <h4>Yiqi Liu</h4>
                 <div class="team-role">Associate Professor</div>
                 <div class="team-institution">The Education University of Hong Kong</div>
@@ -904,42 +1016,60 @@
         </div>
         <div class="associates-grid">
             <div class="associate-card">
-                <div class="associate-avatar">QC</div>
+                <div class="team-avatar-wrapper" style="width:44px;height:44px;">
+                    <img src="qinghua-chen.jpg" alt="Qinghua Chen" class="team-photo" onerror="this.style.display='none'">
+                    <div class="team-avatar-fallback" style="font-size:14px;">QC</div>
+                </div>
                 <h4>Qinghua Chen</h4>
                 <div class="associate-role">Assistant Professor</div>
                 <div class="associate-institution">National Institute of Education, Nanyang Technological University, Singapore</div>
                 <p class="associate-bio">Integrates Foucauldian frameworks with critical perspectives on language teaching. Examines generative AI's impact on education and teacher agency across Asia-Pacific contexts.</p>
             </div>
             <div class="associate-card">
-                <div class="associate-avatar">MJ</div>
+                <div class="team-avatar-wrapper" style="width:44px;height:44px;">
+                    <img src="mahtab-janfada.jpg" alt="Mahtab Janfada" class="team-photo" onerror="this.style.display='none'">
+                    <div class="team-avatar-fallback" style="font-size:14px;">MJ</div>
+                </div>
                 <h4>Mahtab Janfada</h4>
                 <div class="associate-role">Senior Lecturer</div>
                 <div class="associate-institution">The University of Melbourne</div>
                 <p class="associate-bio">Advancing pluriliteracies in language and literacy education through sociocultural and critical paradigms. Expert in Bakhtinian dialogicality theory; pioneers translating the PAA Model and 4T Lenses into classroom practice.</p>
             </div>
             <div class="associate-card">
-                <div class="associate-avatar">TX</div>
+                <div class="team-avatar-wrapper" style="width:44px;height:44px;">
+                    <img src="tracy-xi.jpg" alt="Lu Tracy Xi" class="team-photo" onerror="this.style.display='none'">
+                    <div class="team-avatar-fallback" style="font-size:14px;">TX</div>
+                </div>
                 <h4>Lu Tracy Xi</h4>
                 <div class="associate-role">PhD Candidate</div>
                 <div class="associate-institution">University of Georgia</div>
                 <p class="associate-bio">Multilingual speaker of Mandarin, Cantonese, English, Japanese, and Portuguese. Her transnational identity informs interdisciplinary research in second language learning, AI-human relationality and sociolinguistics.</p>
             </div>
             <div class="associate-card">
-                <div class="associate-avatar">MZ</div>
+                <div class="team-avatar-wrapper" style="width:44px;height:44px;">
+                    <img src="minnie-zhu.jpg" alt="Minnie Man Zhu" class="team-photo" onerror="this.style.display='none'">
+                    <div class="team-avatar-fallback" style="font-size:14px;">MZ</div>
+                </div>
                 <h4>Minnie Man Zhu</h4>
                 <div class="associate-role">EDD Candidate</div>
                 <div class="associate-institution">The Education University of Hong Kong</div>
                 <p class="associate-bio">Experienced Primary School Teacher and Teacher-Researcher. Pioneering the Bayesian approach to dynamic classroom assessment, conducting an auto-ethnography on Teacher Assessment Literacy Development.</p>
             </div>
             <div class="associate-card">
-                <div class="associate-avatar">EH</div>
+                <div class="team-avatar-wrapper" style="width:44px;height:44px;">
+                    <img src="emily-he.jpg" alt="Peichang (Emily) He" class="team-photo" onerror="this.style.display='none'">
+                    <div class="team-avatar-fallback" style="font-size:14px;">EH</div>
+                </div>
                 <h4>Peichang (Emily) He</h4>
                 <div class="associate-role">Postdoctoral Research Fellow</div>
                 <div class="associate-institution">The Education University of Hong Kong</div>
                 <p class="associate-bio">Excels in translating LAC and CLIL theories into teacher-actionable classroom approaches. Pioneered the Concept and Language Mapping Approach (CLM) in CLIL and is a pivotal researcher in the ELC team.</p>
             </div>
             <div class="associate-card">
-                <div class="associate-avatar">SG</div>
+                <div class="team-avatar-wrapper" style="width:44px;height:44px;">
+                    <img src="shaoqing-guo.jpg" alt="Shaoqing Guo" class="team-photo" onerror="this.style.display='none'">
+                    <div class="team-avatar-fallback" style="font-size:14px;">SG</div>
+                </div>
                 <h4>Shaoqing Guo</h4>
                 <div class="associate-role">PhD Candidate</div>
                 <div class="associate-institution">The Education University of Hong Kong</div>
@@ -1040,7 +1170,7 @@
         <div class="section-header">
             <div class="section-label">Resources & publications</div>
             <h2 class="section-title">Featured open-access works</h2>
-            <p class="section-desc">Selected publications, tools, and presentations from our research programme, freely available for scholars and educators.</p>
+            <p class="section-desc">Selected publications, events, and tools from our research programme, freely available for scholars and educators.</p>
         </div>
         <div class="resources-grid">
             <a href="https://www.cambridge.org/core/elements/ecological-languaging-competencies/32A10089686A000AC34012AE10F7A74C" class="resource-card" target="_blank">
@@ -1083,6 +1213,14 @@
                     <div class="resource-meta">Wiley-Blackwell · 2025 · Book Chapter · Thibault & Lin</div>
                 </div>
             </a>
+            <a href="https://www.eduhk.hk/cle/activities/upcoming-activities/408" class="resource-card" target="_blank">
+                <div class="resource-icon-sm" style="background:color-mix(in srgb, var(--kimi-chart-2) 12%, transparent);color:var(--kimi-chart-2);">E</div>
+                <div class="resource-info">
+                    <h4>Linguistics Summer Institute 2026: Ecological Languaging</h4>
+                    <p>Four-day online institute hosted by EdUHK. Featuring live interactive sessions on language proficiency, conceptualizing languaging, ELC assessment, and enhancing language education infrastructure.</p>
+                    <div class="resource-meta">EdUHK · May 19–22, 2026 · Online Event · Recordings forthcoming</div>
+                </div>
+            </a>
             <div class="resource-card">
                 <div class="resource-icon-sm">R</div>
                 <div class="resource-info">
@@ -1122,6 +1260,76 @@
                     <p>Professional development materials on conceptual refinement, curriculum design, and ecological assessment.</p>
                     <div class="resource-meta">Training · Link forthcoming</div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="media">
+        <div class="section-header">
+            <div class="section-label">Media & interviews</div>
+            <h2 class="section-title">Lectures, talks & profiles</h2>
+            <p class="section-desc">Selected video lectures, interviews, articles, and profiles of our team members.</p>
+        </div>
+        <div class="media-grid">
+            <div class="media-card">
+                <h4>Prof. Constant Leung</h4>
+                <a href="https://www.youtube.com/watch?v=MCrfMhy8o-A" class="media-link" target="_blank"><span class="media-tag">Video</span> Lecture on language education</a>
+                <a href="https://www.youtube.com/watch?v=iEpQyjdwfUY" class="media-link" target="_blank"><span class="media-tag">Video</span> Talk on assessment practices</a>
+                <a href="https://www.youtube.com/watch?v=LhfrtHyG8yw" class="media-link" target="_blank"><span class="media-tag">Video</span> Keynote address</a>
+                <a href="https://www.kcl.ac.uk/news/spotlight/helping-children-with-english-as-an-additional-language-reach-potential" class="media-link" target="_blank"><span class="media-tag">Profile</span> KCL spotlight: EAL potential</a>
+                <a href="https://www.facebook.com/groups/293616020843774/posts/2538803546324999/" class="media-link" target="_blank"><span class="media-tag">Post</span> Facebook community post</a>
+            </div>
+            <div class="media-card">
+                <h4>Prof. Angel M. Y. Lin</h4>
+                <a href="https://www.youtube.com/watch?v=YjOGwRrAi00" class="media-link" target="_blank"><span class="media-tag">Video</span> Plenary lecture</a>
+                <a href="https://www.facebook.com/watch/?v=1965052417387178" class="media-link" target="_blank"><span class="media-tag">Video</span> Interview recording</a>
+                <a href="https://www.youtube.com/watch?v=dSBqa-1b-3A" class="media-link" target="_blank"><span class="media-tag">Video</span> Keynote presentation</a>
+                <a href="https://www.youtube.com/watch?v=DBKr46w3H7c" class="media-link" target="_blank"><span class="media-tag">Video</span> Conference talk</a>
+                <a href="https://my.tesol.org/news/1432804" class="media-link" target="_blank"><span class="media-tag">News</span> TESOL feature article</a>
+                <a href="https://www.leveraginglanguages.com/post/ecologies-of-languaging-ai-and-humanity-in-education" class="media-link" target="_blank"><span class="media-tag">Blog</span> Ecologies of languaging, AI & humanity</a>
+            </div>
+            <div class="media-card">
+                <h4>Prof. Paul J. Thibault</h4>
+                <a href="https://www.youtube.com/watch?v=OZCapp9ZRgE" class="media-link" target="_blank"><span class="media-tag">Video</span> Lecture on distributed language</a>
+                <a href="https://www.youtube.com/watch?v=SzG8FLsQgSw" class="media-link" target="_blank"><span class="media-tag">Video</span> Seminar on ecological semiotics</a>
+                <a href="https://www.codebiology.org/pdf/%5B8%5D%20Thibault%20(2011).pdf" class="media-link" target="_blank"><span class="media-tag">Article</span> Code Biology (PDF)</a>
+                <a href="https://www.researchgate.net/scientific-contributions/Paul-J-Thibault-2108428284" class="media-link" target="_blank"><span class="media-tag">Profile</span> ResearchGate publications</a>
+                <a href="https://www.youtube.com/watch?v=YfYdMN3HI6o" class="media-link" target="_blank"><span class="media-tag">Video</span> What is Languaging?</a>
+            </div>
+            <div class="media-card">
+                <h4>Prof. Li Wei</h4>
+                <a href="https://www.youtube.com/watch?v=xbST0v2FeKc" class="media-link" target="_blank"><span class="media-tag">Video</span> Lecture on translanguaging</a>
+                <a href="https://www.youtube.com/watch?v=bUaBZYOVJLY" class="media-link" target="_blank"><span class="media-tag">Video</span> Talk on multilingual education</a>
+                <a href="https://aecardiffknowledgehub.wales/2024/04/17/exploring-the-bilingual-brain-an-interview-with-professor-li-wei-mae/" class="media-link" target="_blank"><span class="media-tag">Interview</span> Exploring the bilingual brain</a>
+            </div>
+            <div class="media-card">
+                <h4>Prof. Eunice Eunhee Jang</h4>
+                <a href="https://www.youtube.com/watch?v=Xs-3I1WipO8" class="media-link" target="_blank"><span class="media-tag">Video</span> Lecture on language assessment</a>
+            </div>
+            <div class="media-card">
+                <h4>Prof. Ming Ming Chiu</h4>
+                <a href="https://www.youtube.com/watch?v=SDUfjR0rkXw" class="media-link" target="_blank"><span class="media-tag">Video</span> Talk on statistical discourse analysis</a>
+                <a href="https://www.youtube.com/watch?v=DzKOkhvau5E" class="media-link" target="_blank"><span class="media-tag">Video</span> Presentation on learning analytics</a>
+            </div>
+            <div class="media-card">
+                <h4>Prof. Xuesong (Andy) Gao</h4>
+                <a href="https://www.youtube.com/watch?v=QUCzPeuEwio" class="media-link" target="_blank"><span class="media-tag">Video</span> Lecture on teacher agency</a>
+                <a href="https://www.youtube.com/watch?v=Oz2iozULW2U" class="media-link" target="_blank"><span class="media-tag">Video</span> Talk on learner identity</a>
+            </div>
+            <div class="media-card">
+                <h4>Prof. Yongyan Zheng</h4>
+                <a href="https://www.youtube.com/watch?v=080QuynNCIU" class="media-link" target="_blank"><span class="media-tag">Video</span> Lecture on language education</a>
+                <a href="https://languageonthemove.com/shanghai-multilingualism-alliance/" class="media-link" target="_blank"><span class="media-tag">Blog</span> Shanghai Multilingualism Alliance</a>
+                <a href="https://www.youtube.com/watch?v=njEqyQbRbfk" class="media-link" target="_blank"><span class="media-tag">Video</span> Talk on academic literacies</a>
+            </div>
+            <div class="media-card">
+                <h4>Prof. Michelle Mingyue Gu</h4>
+                <a href="https://www.youtube.com/watch?v=1_9IW9UXGxQ" class="media-link" target="_blank"><span class="media-tag">Video</span> Lecture on digital trans-literacies</a>
+                <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9068595/" class="media-link" target="_blank"><span class="media-tag">Article</span> PMC publication on multilingualism</a>
+            </div>
+            <div class="media-card">
+                <h4>Dr. Yiqi Liu</h4>
+                <a href="https://www.facebook.com/opentesol/posts/%F0%9D%90%8B%F0%9D%90%84%F0%9D%90%98%F0%9D%90%8D%F0%9D%90%8E%F0%9D%90%93%F0%9D%90%84-%F0%9D%90%92%F0%9D%90%8F%F0%9D%90%84%F0%9D%90%80%F0%9D%90%8A%F0%9D%90%84%F0%9D%90%91-%F0%9D%90%92%F0%9D%90%8F%F0%9D%90%8E%F0%9D%90%93%F0%9D%90%8B%F0%9D%90%88%F0%9D%90%86%F0%9D%90%87%F0%9D%90%93-%F0%9D%90%8E%F0%9D%90%9F%F0%9D%90%84%F0%9D%90%8D%F0%9D%90%93%F0%9D%90%84%F0%9D%90%92%F0%9D%90%8E%F0%9D%90%8B-%F0%9D%9F%8E%F0%9D%9F%8F%F0%9D%9F%96-%F0%9D%90%83%F0%9D%90%AB-%F0%9D%90%98%F0%9D%90%A2%F0%9D%90%AA%F0%9D%90%A2-%F0%9D%90%8B%F0%9D%90%88%F0%9D%90%94-%F0%9D%90%80%F0%9D%90%A9%F0%9D%90%AB%F0%9D%90%A2%F0%9D%90%A5%F0%9D%90%9E%F0%9D%90%9F0%B8%8Fwe-are-honored-to-wel/1587462496720068/" class="media-link" target="_blank"><span class="media-tag">Post</span> OpenTESOL keynote spotlight</a>
             </div>
         </div>
     </section>
